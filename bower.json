@@ -8,7 +8,8 @@
     "jquery": "latest",
     "angular": "latest",
     "angular-resource": "~1.2.25",
-    "bootstrap": "~3.2.0"
+    "bootstrap": "~3.2.0",
+    "angular-route": "~1.2.25"
   },
   "license": "MIT",
   "private": true,
