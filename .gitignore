@@ -1,0 +1,33 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Netbeans
+nb-configuration.xml
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Gradle
+gradle
+.gradle/
+
+# ---
+out
+WildFly.dpf
+
+
+# JS
+src/main/webapp/node_modules
+src/main/webapp/vendor
+src/main/webapp/test/coverage
