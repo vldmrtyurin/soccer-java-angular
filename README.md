@@ -1,2 +1,2 @@
-soccer
+soccer-java-angular
 ======
