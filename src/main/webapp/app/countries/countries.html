@@ -1,1 +1,10 @@
 <p>this is country template</p>
+<div ng-controller="CountriesCtrl"><ul>
+    <h3>{{helloFromController}}</h3>
+  <h4>{{items.length}}</h4>
+  <h4>{{countries.length}}</h4>
+    <li ng-repeat="country in countries">
+      <a ng-href=#/countries/{{country.id}}>{{country.name}}</a>
+
+    </li>
+</ul></div>

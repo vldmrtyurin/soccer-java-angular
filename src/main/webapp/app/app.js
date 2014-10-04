@@ -2,7 +2,9 @@
 
 angular.module('soccer', [
   'ngRoute',
-  'soccer.countries'
+  'ngResource',
+  'soccer.countries',
+  'soccer.country'
 ]).
 config(['$routeProvider', function($routeProvider) {
   

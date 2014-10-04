@@ -7,7 +7,10 @@ public class ClubResource extends Link {
     
     public ClubResource(UriInfo info, Club club) {
         super(info, Link.CLUBS, club);
+        put("id", club.getId());
         put("name", club.getName());
+        put("city", club.getCity());
+        put("country", new Link(info, COUNTRIES, club.getCountry()));
     }
 
 }

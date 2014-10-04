@@ -7,8 +7,9 @@ public class PlayerResource extends Link {
     
     public PlayerResource(UriInfo info, Player player) {
         super(info, Link.PLAYERS, player);
+        put("id", player.getId());
         put("name", player.getName());
-        put("birhtDate", player.getBirthDate());
+        put("birthDate", player.getBirthDate());
         put("country", new Link(info, Link.COUNTRIES, player.getCountry()));
         put("club", new Link(info, Link.CLUBS, player.getClub()));
     }
