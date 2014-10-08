@@ -1,9 +1,14 @@
-<p>this is country template</p>
-<div ng-controller="CountryDetailsCtrl"><ul>
-  <h3>{{countryController}}</h3>
-  <h4>{{country.name}}</h4>
+<div ng-controller="CountryDetailsCtrl">
+  <h4>{{controllerName}}</h4>
+  <h2>{{country.name}}</h2>
   <h3>Players:</h3>
-  <ul ng-repeat="player in players">
-    <li>{{player.name}}</li>
-  </ul>
-</ul></div>
+  <table class="table table-striped">
+    <tr ng-repeat="player in players">
+      <td>{{player.id}}</td>
+      <td>{{player.name}}</td>
+      <td>{{player.num}}</td>
+      <td>{{player.birthDate}}</td>
+      <td><a ng-href=#/clubs/{{player.club.id}}>{{player.club.name}}</a></td>
+    </tr>
+  </table>
+</div>

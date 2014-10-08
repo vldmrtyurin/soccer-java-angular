@@ -36,15 +36,15 @@ public class DefaultCountryService implements CountryService {
     }
 
     @Override
-    public List<Player> getPlayers(Country country) {
-        return entityManager.createNamedQuery("Player.findByCountry")
+    public List<Club> getClubs(Country country) {
+        return entityManager.createNamedQuery("Club.findByCountry")
                             .setParameter("country", country).getResultList();
     }
 
     @Override
-    public List<Club> getClubs(Country country) {
-        return entityManager.createNamedQuery("Club.findByCountry")
-                            .setParameter("country", country).getResultList();
+    public List<Player> getPlayers(Country country) {
+        return entityManager.createNamedQuery("Player.findByCountry")
+                .setParameter("country", country).getResultList();
     }
 
 }

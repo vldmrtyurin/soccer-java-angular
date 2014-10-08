@@ -17,9 +17,10 @@ angular.module('soccer.countries', [
 }])
 
 .controller('CountriesCtrl', ['$scope', '$resource', function($scope, $resource) {
-  $scope.helloFromController = "Hello from country Ctrl";
-  $scope.CountriesResource = $resource('http://localhost:8080/soccer/resources/countries/:countryId');
+  $scope.controllerName = "CountriesCtrl";
+  $scope.CountriesResource = $resource('resources/countries/:countryId');
   $scope.countryList = $scope.CountriesResource.get(function() {
     $scope.countries = $scope.countryList.items;
   });
+    $scope.selectedCountry;
 }]);

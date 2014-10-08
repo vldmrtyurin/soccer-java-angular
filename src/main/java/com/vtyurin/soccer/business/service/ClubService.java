@@ -13,5 +13,5 @@ public interface ClubService {
     Club deleteById(long id);
     Country getCountry(long id);
     Collection<Club> getClubs();
-    Collection<Player> getPlayers();
+    Collection<Player> getPlayers(Club club);
 }

@@ -1,0 +1,18 @@
+<div class="row" ng-controller="ClubsCtrl">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <h3>{{club.name}}</h3>
+    <h4>{{club.country.name}}</h4>
+    <h4>{{club.city}}</h4>
+    <table class="table table-striped">
+      <tr ng-repeat="player in club.players.items">
+        <td><a ng-href=#/players/{{player.id}}>{{player.name}}</a></td>
+        <td>{{player.num}}</td>
+        <td>{{player.country.name}}</td>
+        <td>{{player.birthDate}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-8"></div>
+</div>

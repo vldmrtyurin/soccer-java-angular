@@ -9,9 +9,10 @@ public class PlayerResource extends Link {
         super(info, Link.PLAYERS, player);
         put("id", player.getId());
         put("name", player.getName());
+        put("num", player.getNum());
         put("birthDate", player.getBirthDate());
-        put("country", new Link(info, Link.COUNTRIES, player.getCountry()));
-        put("club", new Link(info, Link.CLUBS, player.getClub()));
+        put("country", new CountryResource(info, player.getCountry()));
+        put("club", new ClubResource(info, player.getClub()));
     }
 
 }

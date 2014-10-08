@@ -1,10 +1,16 @@
 <p>this is country template</p>
-<div ng-controller="CountriesCtrl"><ul>
-    <h3>{{helloFromController}}</h3>
+<div ng-controller="CountriesCtrl">
+  <h4>{{controllerName}}</h4>
   <h4>{{items.length}}</h4>
   <h4>{{countries.length}}</h4>
-    <li ng-repeat="country in countries">
-      <a ng-href=#/countries/{{country.id}}>{{country.name}}</a>
-
-    </li>
-</ul></div>
+  <select ng-model="selectedCountry" ng-options="country.name for country in countries">
+    <option value="">-- choose country --</option>
+  </select>
+  <p>selected country ID: {{selectedCountry.id}}</p>
+  <table class="table table-striped">
+    <tr ng-repeat="country in countries">
+      <td>{{country.id}}</td>
+      <td><a ng-href=#/countries/{{country.id}}>{{country.name}}</a></td>
+    </tr>
+  </table>
+</div>

@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
+import java.util.List;
 
 @Stateless
 public class DefaultClubService implements ClubService {
@@ -37,12 +38,13 @@ public class DefaultClubService implements ClubService {
     }
 
     @Override
-    public Collection<Club> getClubs() {
+    public List<Club> getClubs() {
         return entityManager.createNamedQuery("Club.findAll").getResultList();
     }
 
     @Override
-    public Collection<Player> getPlayers() {
-        return null;
+    public List<Player> getPlayers(Club club) {
+        return entityManager.createNamedQuery("Player.findByClubId")
+                .setParameter("club", club).getResultList();
     }
 }

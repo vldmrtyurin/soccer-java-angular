@@ -18,6 +18,6 @@ public interface CountryService {
     
     List<Player> getPlayers(Country country);
 
-    List<Club> getClubs(Country country);
+    List getClubs(Country country);
 
 }

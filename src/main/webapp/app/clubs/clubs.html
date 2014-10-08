@@ -1,0 +1,13 @@
+<div class="row" ng-controller="ClubsCtrl">
+  <div class="col-md-2">
+    <p>clubs:</p>
+  </div>
+  <div class="col-md-10">
+    <table class="table table-striped">
+      <tr ng-repeat="club in clubs.items">
+        <td>{{club.id}}</td>
+        <td><a ng-href=#/clubs/{{club.id}}>{{club.name}}</a></td>
+      </tr>
+    </table>
+  </div>
+</div>

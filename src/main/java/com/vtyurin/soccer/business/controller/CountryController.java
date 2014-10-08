@@ -17,14 +17,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 @Path(Link.COUNTRIES)
-public class CountryController {
+public class CountryController extends BasicController{
     
     @Inject
     CountryService countryService;
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON + "; " +
-              MediaType.CHARSET_PARAMETER + "=UTF-8")
+    @Produces(JSON_UTF8)
     public CollectionResource countryList(@Context UriInfo info) {
         Collection<Country> countries = countryService.getCountries();
         Collection items = new ArrayList(countries.size());
@@ -38,22 +37,19 @@ public class CountryController {
     
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON + "; " +
-              MediaType.CHARSET_PARAMETER + "=UTF-8")
-    public CountryResource getCountry(@Context UriInfo info, @PathParam("id") long id) {
+    @Produces(JSON_UTF8)
+    public CountryResource getCountryById(@Context UriInfo info, @PathParam("id") long id) {
         Country country = countryService.getById(id);
         return new CountryResource(info, country);
     }
     
     @GET
     @Path("/{id}/players")
-    @Produces(MediaType.APPLICATION_JSON + "; " +
-              MediaType.CHARSET_PARAMETER + "=UTF-8")
+    @Produces(JSON_UTF8)
     public CollectionResource getPlayers(@Context UriInfo info, @PathParam("id") long id) {
         Country country = countryService.getById(id);
         Collection<Player> players = countryService.getPlayers(country);
         Collection items = new ArrayList(players.size());
-        
         for (Player player : players) {
             items.add(new PlayerResource(info, player));
         }
@@ -63,8 +59,7 @@ public class CountryController {
     
     @GET
     @Path("/{id}/clubs")
-    @Produces(MediaType.APPLICATION_JSON + "; " +
-              MediaType.CHARSET_PARAMETER + "=UTF-8")
+    @Produces(JSON_UTF8)
     public CollectionResource getClubs(@Context UriInfo info, @PathParam("id") long id) {
         Country country = countryService.getById(id);
         Collection<Club> clubs = countryService.getClubs(country);
