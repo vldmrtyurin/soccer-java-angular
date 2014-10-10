@@ -1,0 +1,18 @@
+<div>
+  <div class="col-sm-2">
+      <p>Manage</p>
+      <p><a href="#/admin/players">Players</a></p>
+      <p><a href="#/admin/clubs">Clubs</a></p>
+  </div>
+  <div class="col-sm-10">
+    <p>Clubs</p>
+    <!--clubs-->
+    <table class="table table-striped">
+      <tr ng-repeat="club in clubs.items">
+        <td><a ng-href=#/clubs/{{club.id}}>{{club.name}}</a></td>
+        <td>{{club.country.name}}</td>
+        <td>{{club.city}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

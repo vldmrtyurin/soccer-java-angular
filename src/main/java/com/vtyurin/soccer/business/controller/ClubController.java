@@ -24,11 +24,7 @@ public class ClubController extends BasicController {
     @Produces(JSON_UTF8)
     public CollectionResource clubList(@Context UriInfo info) {
         Collection<Club> clubs = clubService.getClubs();
-        Collection items = new ArrayList(clubs.size());
-
-        for (Club club : clubs) {
-            items.add(new ClubResource(info, club));
-        }
+        Collection items = getClubResourceCollection(info, clubs);
 
         return new CollectionResource(info, items, Link.CLUBS);
     }
@@ -47,10 +43,7 @@ public class ClubController extends BasicController {
     public CollectionResource getPlayers(@Context UriInfo info, @PathParam("id") long id) {
         Club club = clubService.getById(id);
         Collection<Player> players = clubService.getPlayers(club);
-        Collection items = new ArrayList(players.size());
-        for (Player player : players) {
-            items.add(new PlayerResource(info, player));
-        }
+        Collection items = getPlayerResourceCollection(info, players);
 
         return new CollectionResource(info, items, info.getPath());
     }

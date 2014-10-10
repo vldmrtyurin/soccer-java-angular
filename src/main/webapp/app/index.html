@@ -7,41 +7,43 @@
         href="vendor/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
-  <div class="container">
-
-    <div class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#/countries">Countries</a></li>
-            <li><a href="#/players">Players</a></li>
-            <li><a href="#/countries/191">Russia</a></li>
-            <li><a href="#/clubs">Clubs</a></li>
-          </ul>
-        </div>
+<div class="container">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/countries">Countries</a></li>
+          <li><a href="#/players">Players</a></li>
+          <li><a href="#/clubs">Clubs</a></li>
+          <li><a href="#/admin"><span class="glyphicon glyphicon-wrench"></span></a></li>
+        </ul>
       </div>
     </div>
-    <div class="container-fluid" ng-view>
-      <div class="row">
-        <div class="col-md-12">
-          лоло
-          <div>1 + 2 = {{ 1 + 2 }}</div>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="container-fluid" ng-view>
 
   </div>
+</div>
 
 <script type="text/javascript" src="vendor/angular/angular.js"></script>
 <script type="text/javascript"
         src="vendor/angular-route/angular-route.js"></script>
 <script type="text/javascript"
         src="vendor/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript"
+        src="http:///cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="countries/countries.js"></script>
 <script type="text/javascript" src="countries/country.js"></script>
-  <script type="text/javascript" src="clubs/clubs.js"></script>
-  <script type="text/javascript" src="clubs/clubsCtrl.js"></script>
+<script type="text/javascript" src="clubs/clubs.js"></script>
+<script type="text/javascript" src="clubs/clubsCtrl.js"></script>
+<script type="text/javascript" src="clubs/clubDetailCtrl.js"></script>
+<script type="text/javascript" src="admin/admin.js"></script>
+<script type="text/javascript" src="admin/adminCtrl.js"></script>
+<script type="text/javascript" src="admin/adminPlayersCtrl.js"></script>
+<script type="text/javascript" src="admin/adminClubsCtrl.js"></script>
 <script type="text/javascript" src="js/services.js"></script>
 </body>
 </html>

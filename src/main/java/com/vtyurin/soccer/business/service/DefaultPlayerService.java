@@ -30,8 +30,8 @@ public class DefaultPlayerService implements PlayerService {
     }
 
     @Override
-    public Player deleteById(long id) {
-        return null;
+    public void delete(Player player) {
+        entityManager.remove(entityManager.merge(player));
     }
 
     @Override

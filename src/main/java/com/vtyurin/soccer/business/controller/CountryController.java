@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 @Path(Link.COUNTRIES)
@@ -26,11 +25,7 @@ public class CountryController extends BasicController{
     @Produces(JSON_UTF8)
     public CollectionResource countryList(@Context UriInfo info) {
         Collection<Country> countries = countryService.getCountries();
-        Collection items = new ArrayList(countries.size());
-        
-        for (Country country : countries) {
-            items.add(new CountryResource(info, country));
-        }
+        Collection items = getCountryResourceCollection(info, countries);
         
         return new CollectionResource(info, items, Link.COUNTRIES);
     }
@@ -49,25 +44,18 @@ public class CountryController extends BasicController{
     public CollectionResource getPlayers(@Context UriInfo info, @PathParam("id") long id) {
         Country country = countryService.getById(id);
         Collection<Player> players = countryService.getPlayers(country);
-        Collection items = new ArrayList(players.size());
-        for (Player player : players) {
-            items.add(new PlayerResource(info, player));
-        }
+        Collection items = getPlayerResourceCollection(info, players);
         
         return new CollectionResource(info, items, info.getPath());
     }
-    
+
     @GET
     @Path("/{id}/clubs")
     @Produces(JSON_UTF8)
     public CollectionResource getClubs(@Context UriInfo info, @PathParam("id") long id) {
         Country country = countryService.getById(id);
         Collection<Club> clubs = countryService.getClubs(country);
-        Collection items = new ArrayList(clubs.size());
-        
-        for (Club club : clubs) {
-            items.add(new ClubResource(info, club));
-        }
+        Collection items = getClubResourceCollection(info, clubs);
         
         return new CollectionResource(info, items, info.getPath());
     }

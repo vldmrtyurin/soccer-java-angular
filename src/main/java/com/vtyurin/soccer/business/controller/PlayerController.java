@@ -1,17 +1,11 @@
 package com.vtyurin.soccer.business.controller;
 
-import com.vtyurin.soccer.business.entity.Club;
 import com.vtyurin.soccer.business.entity.Player;
 import com.vtyurin.soccer.business.service.PlayerService;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -26,11 +20,7 @@ public class PlayerController extends BasicController {
     @Produces(JSON_UTF8)
     public CollectionResource playerList(@Context UriInfo info) {
         Collection<Player> players = playerService.getPlayers();
-        Collection items = new ArrayList(players.size());
-        
-        for (Player player : players) {
-            items.add(new PlayerResource(info, player));
-        }
+        Collection items = getPlayerResourceCollection(info, players);
         
         return new CollectionResource(info, items, Link.PLAYERS);
     }
@@ -50,12 +40,11 @@ public class PlayerController extends BasicController {
         return new PlayerResource(info, player);
     }
 
-    @Path("/test/{id}")
-    @GET
-    @Produces(JSON_UTF8)
-    public Player getTestPlayer(@Context UriInfo info, @PathParam("id") long id) {
+    @Path("/{id}")
+    @DELETE
+    public void deletePlayer(@PathParam("id") long id) {
         Player player = playerService.getById(id);
-        return player;
+        playerService.delete(player);
     }
 
 }

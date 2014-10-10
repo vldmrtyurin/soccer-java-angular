@@ -12,7 +12,7 @@ public interface PlayerService {
     
     void save(Player player);
     
-    Player deleteById(long id);
+    void delete(Player  player);
     
     Club getClub();
 

@@ -1,9 +1,9 @@
-<div ng-controller="CountryDetailsCtrl">
+<div >
   <h4>{{controllerName}}</h4>
   <h2>{{country.name}}</h2>
   <h3>Players:</h3>
   <table class="table table-striped">
-    <tr ng-repeat="player in players">
+    <tr ng-repeat="player in country.players.items">
       <td>{{player.id}}</td>
       <td>{{player.name}}</td>
       <td>{{player.num}}</td>

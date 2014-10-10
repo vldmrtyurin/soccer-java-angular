@@ -10,7 +10,7 @@ public class ClubResource extends Link {
         put("id", club.getId());
         put("name", club.getName());
         put("city", club.getCity());
-        put("country", new Link(info, COUNTRIES, club.getCountry()));
+        put("country", new CountryResource(info, club.getCountry()));
     }
 
 }
