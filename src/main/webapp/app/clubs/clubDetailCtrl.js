@@ -5,5 +5,8 @@ angular.module('soccer.clubs').controller('ClubDetailCtrl', ['$scope', '$routePa
       Club.getPlayers($routeParams.clubId).then(function(data) {
         $scope.club.players = data;
       });
+      Club.getStadiums($routeParams.clubId).then(function(data) {
+        $scope.club.stadiums = data;
+      });
     });
 }]);

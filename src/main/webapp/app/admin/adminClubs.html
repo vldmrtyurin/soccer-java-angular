@@ -1,17 +1,58 @@
 <div>
   <div class="col-sm-2">
-      <p>Manage</p>
-      <p><a href="#/admin/players">Players</a></p>
-      <p><a href="#/admin/clubs">Clubs</a></p>
+    <p>Manage</p>
+    <p><a href="#/admin/players">Players</a></p>
+    <p><a href="#/admin/clubs">Clubs</a></p>
+    <p><a href="#/admin/stadiums">Stadiums</a></p>
   </div>
-  <div class="col-sm-10">
+  <div class="col-md-10">
     <p>Clubs</p>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="name" placeholder="name" ng-model="newClub.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="city" placeholder="city" ng-model="newClub.city">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="site" placeholder="site" ng-model="newClub.site">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="logo" placeholder="logo" ng-model="newClub.logo">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <div countries selected-country="selectedCountry"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <div stadiums selected-stadium="selectedStadium"></div>
+        </div>
+      </div>
+    </form>
+    <p>
+      <button type="button" class="btn btn-default btn-xs" ng-click ="addClub()">add</button>
+    </p>
     <!--clubs-->
     <table class="table table-striped">
       <tr ng-repeat="club in clubs.items">
         <td><a ng-href=#/clubs/{{club.id}}>{{club.name}}</a></td>
         <td>{{club.country.name}}</td>
         <td>{{club.city}}</td>
+        <td>
+          <button type="button" class="btn btn-default btn-sm" ng-click="delete(club)">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </button>
+        </td>
       </tr>
     </table>
   </div>

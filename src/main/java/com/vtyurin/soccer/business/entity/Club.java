@@ -2,52 +2,59 @@ package com.vtyurin.soccer.business.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.*;
 
-@javax.persistence.Entity
-@Table(name = "club")
-@XmlRootElement
+@Entity
+@Table(name = "CLUB")
 @NamedQueries({
-@NamedQuery(name = "Club.findAll", query = "SELECT c FROM Club c"),
-@NamedQuery(name = "Club.findById",
-            query = "SELECT c FROM Club c WHERE c.id = :id"),
-@NamedQuery(name = "Club.findByCountry",
-            query = "SELECT c FROM Club c WHERE c.country = :country")})
-public class Club extends Entity implements Serializable {
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="club_id")
+        @NamedQuery(name = "Club.findAll", query = "SELECT c FROM Club c"),
+        @NamedQuery(name = "Club.findById",
+                    query = "SELECT c FROM Club c WHERE c.id = :id"),
+        @NamedQuery(name = "Club.findByCountry",
+                    query = "SELECT c FROM Club c WHERE c.country = :country"),
+        @NamedQuery(name = "Club.fetchPlayerList",
+                    query = "SELECT c FROM Club c join fetch c.playerList where c.id = :id"),
+        @NamedQuery(name = "Club.fetchStadiumList",
+                    query = "SELECT c FROM Club c join fetch c.stadiumList where c.id = :id")
+})
+public class Club extends AbstractEntity implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CLUB_ID")
     private long id;
-    
+
     @ManyToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "COUNTRY_ID")
     private Country country;
-    
-    @Column(name = "name")
+
+    @Column(name = "NAME")
     private String name;
-    
-    @Column(name = "city")
+
+    @Column(name = "CITY")
     private String city;
-        
-    @OneToMany(mappedBy = "club")
+
+    @Column(name = "SITE")
+    private String site;
+
+    @Column(name = "LOGO")
+    private String logo;
+
+    @ManyToMany(mappedBy = "clubList")
+    private List<Stadium> stadiumList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "CLUB_PLAYER",
+            joinColumns = {@JoinColumn(name = "CLUB_ID", referencedColumnName = "CLUB_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PLAYER_ID", referencedColumnName = "PLAYER_ID")}
+    )
     private List<Player> playerList;
-    
+
     public Club() {
-        
+
     }
-    
-    @XmlTransient
+
     @Override
     public long getId() {
         return id;
@@ -56,15 +63,6 @@ public class Club extends Entity implements Serializable {
     @Override
     public void setId(long clubId) {
         this.id = clubId;
-    }
-    
-    @XmlTransient
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountryId(Country country) {
-        this.country = country;
     }
 
     public String getName() {
@@ -82,8 +80,39 @@ public class Club extends Entity implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-    
-    @XmlTransient
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<Stadium> getStadiumList() {
+        return stadiumList;
+    }
+
+    public void setStadiumList(List<Stadium> stadiumList) {
+        this.stadiumList = stadiumList;
+    }
+
     public List<Player> getPlayerList() {
         return playerList;
     }

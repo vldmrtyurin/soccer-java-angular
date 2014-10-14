@@ -1,4 +1,4 @@
-package com.vtyurin.soccer.business.controller;
+package com.vtyurin.soccer.business.resource;
 
 import com.vtyurin.soccer.business.entity.Country;
 import javax.ws.rs.core.UriInfo;

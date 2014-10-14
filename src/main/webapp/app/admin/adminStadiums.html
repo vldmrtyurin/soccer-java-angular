@@ -1,0 +1,55 @@
+<div>
+  <div class="col-sm-2">
+    <p>Manage</p>
+    <p><a href="#/admin/players">Players</a></p>
+    <p><a href="#/admin/clubs">Clubs</a></p>
+    <p><a href="#/admin/stadiums">Stadiums</a></p>
+  </div>
+  <div class="col-md-10">
+    <p>Stadiums</p>
+    <button type="button" class="btn btn-default btn-xs">edit</button>
+    <p></p>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="name" placeholder="name" ng-model="newStadium.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <div countries selected-country="selectedCountry"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" class="form-control input-sm" id="city" placeholder="city" ng-model="newStadium.city">
+        </div>
+      </div>
+    </form>
+    <p>
+      <button type="button" class="btn btn-default btn-xs" ng-click ="addStadium()">add</button>
+    </p>
+    <!--stadiums-->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <td></td>
+        <td>name</td>
+        <td>country</td>
+        <td>city</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="stadium in stadiums.items">
+        <td><a ng-href=#/stadium/{{stadium.id}}>{{stadium.name}}</a></td>
+        <td>{{stadium.name}}</td>
+        <td>{{stadium.country.name}}</td>
+        <td>{{stadium.city}}</td>
+        <td><button type="button" class="btn btn-default btn-sm" ng-click="delete(stadium)">
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -10,12 +10,14 @@ angular.module('soccer.admin').controller('adminPlayersCtrl', ['$scope', 'Player
       $scope.players.items = _.without($scope.players.items, player);
     });
   }
+  $scope.selectedPosition = {};
   $scope.selectedCountry = {};
   $scope.selectedClub = {};
   $scope.newPlayer = {};
   $scope.addPlayer = function() {
-    $scope.newPlayer.countryId = $scope.selectedCountry.id;
-    $scope.newPlayer.clubId = $scope.selectedClub.id;
+    $scope.newPlayer.position = $scope.selectedPosition;
+    $scope.newPlayer.country = $scope.selectedCountry;
+    $scope.newPlayer.club = $scope.selectedClub;
     Player.save($scope.newPlayer);
 
   }

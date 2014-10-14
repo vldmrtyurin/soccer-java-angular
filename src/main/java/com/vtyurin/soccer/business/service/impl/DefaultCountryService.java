@@ -1,8 +1,10 @@
-package com.vtyurin.soccer.business.service;
+package com.vtyurin.soccer.business.service.impl;
 
 import com.vtyurin.soccer.business.entity.Club;
 import com.vtyurin.soccer.business.entity.Country;
 import com.vtyurin.soccer.business.entity.Player;
+import com.vtyurin.soccer.business.service.CountryService;
+
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;

@@ -3,8 +3,11 @@ package com.vtyurin.soccer.business.controller;
 import com.vtyurin.soccer.business.entity.Club;
 import com.vtyurin.soccer.business.entity.Country;
 import com.vtyurin.soccer.business.entity.Player;
+import com.vtyurin.soccer.business.resource.CollectionResource;
+import com.vtyurin.soccer.business.resource.CountryResource;
+import com.vtyurin.soccer.business.resource.Link;
 import com.vtyurin.soccer.business.service.CountryService;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import javax.inject.Inject;
 

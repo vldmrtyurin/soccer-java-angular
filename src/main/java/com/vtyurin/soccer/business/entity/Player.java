@@ -1,74 +1,53 @@
 package com.vtyurin.soccer.business.entity;
 
+import com.vtyurin.soccer.business.entity.listener.AgeCalculationListener;
+
 import java.io.Serializable;
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
+import javax.persistence.*;
 
 @javax.persistence.Entity
-@EntityListeners(PlayerClubChangeListener.class)
-@Table(name = "player")
-@XmlRootElement
+@EntityListeners(AgeCalculationListener.class)
+@Table(name = "PLAYER")
 @NamedQueries({
 @NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p"),
 @NamedQuery(name = "Player.findById",
             query = "SELECT p FROM Player p WHERE p.id = :id"),
-@NamedQuery(name = "Player.findByClubId",
-            query = "SELECT p FROM Player p WHERE p.club = :club"),
 @NamedQuery(name = "Player.findByCountry",
             query = "SELECT p FROM Player p WHERE p.country = :country")})
-public class Player extends Entity implements Serializable {
+public class Player extends AbstractEntity implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="player_id")
+    @Column(name ="PLAYER_ID")
     private long id;
     
     @ManyToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "COUNTRY_ID")
     private Country country;
-    
-    @ManyToOne
-    @JoinColumn(name = "club_id")
-    private Club club;
-    
-    @Transient
-    private long clubId;
-    
-    @Transient
-    private long countryId;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
     
-    @Column(name = "num")
-    private int num;
+    @Column(name = "SQUAD_NUMBER")
+    private int squadNumber;
     
-    @Column(name = "birth_date")
+    @Column(name = "BIRTH_DATE")
     private Date birthDate;
+
+    @ManyToOne
+    @JoinColumn(name = "POSITION_ID")
+    private Position position;
+
+    @ManyToMany(mappedBy = "playerList")
+    private List<Club> clubList;
+
+    @Transient
+    private Integer age;
 
     public Player() {
     }
-    
-    @PrePersist
-    public void init() {
-        
-    }
-    
+
     @Override
     public long getId() {
         return id;
@@ -79,22 +58,12 @@ public class Player extends Entity implements Serializable {
         this.id = playerId;
     }
     
-    @XmlTransient
     public Country getCountry() {
         return country;
     }
 
     public void setCountry(Country country) {
         this.country = country;
-    }
-    
-    @XmlTransient
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
     }
 
     public String getName() {
@@ -105,12 +74,12 @@ public class Player extends Entity implements Serializable {
         this.name = name;
     }
 
-    public int getNum() {
-        return num;
+    public int getSquadNumber() {
+        return squadNumber;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setSquadNumber(int num) {
+        this.squadNumber = num;
     }
 
     public Date getBirthDate() {
@@ -120,22 +89,29 @@ public class Player extends Entity implements Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
-    public long getClubId() {
-        return clubId;
+
+    public Position getPosition() {
+        return position;
     }
 
-    public void setClubId(long clubId) {
-        this.clubId = clubId;
-    }
-    
-    public long getCountryId() {
-        return countryId;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public void setCountryId(long countryId) {
-        this.countryId = countryId;
+    public List<Club> getClubList() {
+        return clubList;
     }
-    
+
+    public void setClubList(List<Club> clubList) {
+        this.clubList = clubList;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
 }

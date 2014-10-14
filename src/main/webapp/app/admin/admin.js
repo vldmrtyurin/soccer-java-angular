@@ -15,4 +15,8 @@ angular.module('soccer.admin', [
     templateUrl: 'admin/adminPlayers.html',
     controller: 'adminPlayersCtrl'
   });
+  $routeProvider.when('/admin/stadiums', {
+    templateUrl: 'admin/adminStadiums.html',
+    controller: 'adminStadiumsCtrl'
+  });
 }]);

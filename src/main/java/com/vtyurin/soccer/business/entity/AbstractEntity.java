@@ -1,10 +1,10 @@
 package com.vtyurin.soccer.business.entity;
 
-public abstract class Entity {
+public abstract class AbstractEntity {
 
     private long id;
 
-    public Entity(){}
+    public AbstractEntity(){}
 
     public long getId() {
         return id;
@@ -13,4 +13,5 @@ public abstract class Entity {
     public void setId(long id) {
         this.id = id;
     }
+
 }

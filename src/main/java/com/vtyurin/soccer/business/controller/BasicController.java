@@ -3,6 +3,11 @@ package com.vtyurin.soccer.business.controller;
 import com.vtyurin.soccer.business.entity.Club;
 import com.vtyurin.soccer.business.entity.Country;
 import com.vtyurin.soccer.business.entity.Player;
+import com.vtyurin.soccer.business.entity.Stadium;
+import com.vtyurin.soccer.business.resource.ClubResource;
+import com.vtyurin.soccer.business.resource.CountryResource;
+import com.vtyurin.soccer.business.resource.PlayerResource;
+import com.vtyurin.soccer.business.resource.StadiumResource;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -34,6 +39,14 @@ public class BasicController {
         Collection items = new ArrayList(countries.size());
         for (Country country: countries) {
             items.add(new CountryResource(info, country));
+        }
+        return items;
+    }
+
+    public Collection<Stadium> getStadiumResourceCollection(UriInfo info, Collection<Stadium> stadiums) {
+        Collection items = new ArrayList(stadiums.size());
+        for (Stadium stadium : stadiums) {
+            items.add((new StadiumResource(info, stadium)));
         }
         return items;
     }

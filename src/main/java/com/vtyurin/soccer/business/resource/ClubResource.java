@@ -1,4 +1,4 @@
-package com.vtyurin.soccer.business.controller;
+package com.vtyurin.soccer.business.resource;
 
 import com.vtyurin.soccer.business.entity.Club;
 import javax.ws.rs.core.UriInfo;
@@ -11,6 +11,9 @@ public class ClubResource extends Link {
         put("name", club.getName());
         put("city", club.getCity());
         put("country", new CountryResource(info, club.getCountry()));
+        put("site", club.getSite());
+        put("logo", club.getLogo());
+        put("stadium", new Link(info, STADIUMS));
     }
 
 }

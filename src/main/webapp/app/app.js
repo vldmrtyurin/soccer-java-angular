@@ -26,13 +26,55 @@ angular.module('soccer', [
       selectedCountry: '='
     },
     link: function(scope, element, attributes) {
-      scope.dirval = "BONUS!";
       Country.getAll(function (data) {
         scope.countries = data;
       });
     }
   }
-}).directive('clubs', function(Club) {
+}).directive('stadiums', function(Stadium) {
+  return {
+    templateUrl: 'stadium-list.html',
+    replace: true,
+    scope: {
+      selectedStadium: '='
+    },
+    link: function(scope, element, attributes) {
+      Stadium.getAll().then(function(data) {
+        scope.stadiums = data;
+      });
+    }
+  }
+}).directive('positions', function(Stadium) {
+  return {
+    templateUrl: 'positions-list.html',
+    replace: true,
+    scope: {
+      selectedPosition: '='
+    },
+    link: function (scope, element, attributes) {
+      scope.positions = {
+        items: [
+          {
+            id: 1,
+            name: 'Goalkeeper'
+          },
+          {
+            id: 2,
+            name: 'Defender'
+          },
+          {
+            id: 3,
+            name: 'Midfielder'
+          },
+          {
+            id: 4,
+            name: 'Attacker'
+          }
+        ]
+      }
+    }
+  }
+  }).directive('clubs', function(Club) {
   return {
     templateUrl: 'club-list.html',
     replace: true,
@@ -57,8 +99,27 @@ angular.module('soccer', [
     getPlayers: function (id) {
       return clubs.one(id).one('players').get();
     },
-    save: function (player) {
-      return clubs.one('players').post('', player);
+    getStadiums: function (id) {
+      return clubs.one(id).one('stadiums').get();
+    },
+    save: function (club) {
+      return clubs.post('', club);
+    },
+    removeById: function(id) {
+      return clubs.one(id).remove();
+    }
+  }
+}).factory('Stadium', function(Restangular) {
+  var stadiums = Restangular.one('stadiums');
+  return {
+    getAll: function () {
+      return stadiums.get();
+    },
+    save: function (stadium) {
+      return stadiums.post('', stadium);
+    },
+    removeById: function(id) {
+      return stadiums.one(id).remove();
     }
   }
 }).factory('Player', function(Restangular) {

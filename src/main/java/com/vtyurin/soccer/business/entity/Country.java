@@ -8,29 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @javax.persistence.Entity
-@Table(name = "country")
-@XmlRootElement
+@Table(name = "COUNTRY")
 @NamedQueries({
 @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
 @NamedQuery(name = "Country.findById",
-            query = "SELECT c FROM Country c WHERE c.id = :idd")})
-public class Country extends Entity implements Serializable {
+            query = "SELECT c FROM Country c WHERE c.id = :id")})
+public class Country extends AbstractEntity implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "country_id")
+    @Column(name = "COUNTRY_ID")
     private long id;
+
+    @Column(name = "CODE")
+    private String code;
     
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
-    
-//    @OneToMany(mappedBy = "country")
-//    private List<Club> clubsList;
-//    
-//    @OneToMany(mappedBy = "country")
-//    private List<Player> playersList;
 
     public Country() {
     }
@@ -52,24 +47,5 @@ public class Country extends Entity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-//    @XmlTransient
-//    public List<Club> getClubsList() {
-//        return clubsList;
-//    }
-//
-//    public void setClubsList(List<Club> clubsList) {
-//        this.clubsList = clubsList;
-//    }
-//    
-//    @XmlTransient
-//    public List<Player> getPlayersList() {
-//        return playersList;
-//    }
-//
-//    public void setPlayersList(List<Player> playersList) {
-//        this.playersList = playersList;
-//    }
-    
-    
+
 }
